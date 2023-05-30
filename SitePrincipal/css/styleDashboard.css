@@ -48,7 +48,7 @@ p{
     color: #fff;
     font-family: Grold;
     font-size: 17px;
-    margin-top: 6%;
+    margin-top: 5%;
     margin-left: 9%;
 }
 
@@ -59,7 +59,7 @@ p{
     height: 25%;
     width: 18%;
     margin-left: 3%;
-    margin-top: -31%;
+    margin-top: -28.6%;
     border-radius: 14px;
     background-color: #0e1420;
 }
@@ -143,43 +143,23 @@ span{
     margin-left: -78%;
 }
 
-.dashHs{
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 24%;
-    width: 18%;
-    margin-left: -97%;
-    margin-top: -6.9%;
-    border-radius: 14px;
-    background-color: #0e1420;
-}
-
-.textPrecisao{
-    margin-top: -31%;
-    margin-left: 9%;
-    font-weight: 600;
-    font-size: 20px;
-}
-
 .dashArmas{
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 41%;
-    width: 18%;
-    margin-left: -97%;
-    margin-top: 24.8%;
+    height: 58%;
+    width: 17.2%;
+    margin-left: -72.3%;
+    margin-top: 10.5%;
     border-radius: 14px;
     background-color: #0e1420;
 }
 
 
 .textArmas{
-    margin-top: -70%;
-    margin-left: 9%;
+    margin-top: -130%;
+    margin-left: 10%;
     font-weight: 600;
     font-size: 20px;
 }
@@ -192,13 +172,13 @@ span{
     height: 26%;
     width: 71.2%;
     margin-left: 18.3%;
-    margin-top: -26.9%;
+    margin-top: -25%;
     border-radius: 14px;
     background-color: #0e1420;
 }
 
 .textAnalise{
-    margin-top: -12.7%;
+    margin-top: -11.7%;
     margin-left: 1.9%;
     font-weight: 600;
     font-size: 20px;
@@ -218,7 +198,7 @@ span{
 .numeroStatus{
     display: flex;
     position: relative;
-    margin-top: 5%;
+    margin-top: 0%;
     margin-left: 10%;
     font-weight: 100;
     font-size: 55px;
@@ -227,7 +207,7 @@ span{
 
 .porcentagemStatus{
     color:green;
-    margin-top: 0%;
+    margin-top: -3%;
     margin-left: 12%;
     font-weight: 100;
     font-size: 16px;
@@ -235,7 +215,7 @@ span{
 
 .porcentagemStatusNeg{
     color:red;
-    margin-top: 0%;
+    margin-top: -3%;
     margin-left: 12%;
     font-weight: 100;
     font-size: 16px;
@@ -322,7 +302,7 @@ span{
 
 .porcentagemPartidaTotal{
     color:green;
-    margin-top: 6%;
+    margin-top: 5%;
     margin-left: 11%;
     font-weight: 100;
     font-size: 16px;
@@ -333,10 +313,10 @@ span{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 52.6%;
+    height: 53.5%;
     width: 32%;
     margin-left: -21%;
-    margin-top: 14.6%;
+    margin-top: 12.8%;
     border-radius: 14px;
     background-color: #0e1420;
 }
@@ -346,10 +326,10 @@ span{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 52.6%;
+    height: 53.5%;
     width: 38%;
     margin-left: 51.3%;
-    margin-top: 14.6%;
+    margin-top: 12.8%;
     border-radius: 14px;
     background-color: #0e1420;
 }
@@ -357,8 +337,8 @@ span{
 .textoUltimasPartidas{
     position: fixed;
     font-size: 22px;
-    margin-top: -22.5%;
-    margin-left: -25%;
+    margin-top: -21.3%;
+    margin-left: -23.5%;
 }
 
 .primeiraPartida{
@@ -379,7 +359,7 @@ span{
     align-items: center;
     height: 19%;
     width: 100%;
-    margin-top: -7.4%;
+    margin-top: -8.5%;
     background-image: linear-gradient(to right, #370A0D , #0f1721);
 }
 
@@ -390,7 +370,7 @@ span{
     align-items: center;
     height: 19%;
     width: 100%;
-    margin-top: 21.4%;
+    margin-top: 19%;
     background-image: linear-gradient(to right, #370A0D , #0f1721);
 }
 
@@ -401,6 +381,6 @@ span{
     align-items: center;
     height: 19%;
     width: 100%;
-    margin-top: 50.4%;
+    margin-top: 46.5%;
     background-image: linear-gradient(to right, #053529 , #0f1721);
 }

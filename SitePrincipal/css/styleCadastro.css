@@ -43,12 +43,7 @@ body main section.login {
     box-shadow: #000000 100px 1px 80px;
   }
 
-  .f{
-    margin-top: -35%;
-    margin-left: -40%;
-    
-  }
-  
+
   body main section.login .area-logo img {
     display: flex;
     align-items: flex-start;
@@ -84,10 +79,12 @@ body main section.login {
     font-family: Grold;
     color: white;
     margin: 25px 0;
+    margin-left: -37%;
   }
 
   
 .form-control{
+  margin-left: -40%;
   padding: 0% 4%;
   border-radius: 5px;
   background-color: #5d6975;
@@ -121,18 +118,18 @@ body main section.login .area-infos .form-group{
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: -18%;
-  margin-top: 10%;
+  margin-left: 40%;
+  margin-top: 0%;
 }
 
 .btnEntrar{
   color:#ffff;
   background-color: rgb(252, 61, 61);
   border: none;
-  width: 40%;
+  width: 80%;
   height: 50px;
-  margin-left: -1%;
-  margin-top: -22%;
+  margin-left: -55%;
+  margin-top: -12%;
   border-radius: 5px;
   font-family: Grold;
   box-shadow: #000000 0px 1px 5px;
@@ -184,3 +181,9 @@ a{
   margin-top: -20%;
   
 }
+
+.mensagem_erro{
+  display: flex;
+  margin-top: 50% ;
+}
+

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<link rel="stylesheet" href="../css/styleCadastro.css">
+</head>
+
+<body>
+    <main>
+        <section class="login">
+            
+            <div class="area-logo">
+                <img class="logoValorant" src="../imagem/VALORANT1.png">
+            </div>
+            <div class="area-infos">
+                
+                <br><br><br>
+                
+                <form class="f">
+                    
+                    <h3>Fazer Cadastro</h3>
+
+                    <div class="form-group">
+                        <input id="ipt_nome" class="form-control" placeholder="NOME DE USUÁRIO">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="ipt_email" type="email" class="form-control" placeholder="EMAIL">
+                    </div>
+
+                    <div class="form-group">
+                        <input id="ipt_cpf" type="number" class="form-control" placeholder="CPF">
+                    </div>
+
+                    <div class="form-group">
+                        <input type="ipt_senha" class="form-control" placeholder="SENHA">
+                    </div>
+
+                    <br><br>
+
+                    <div class="area-cadastro">
+                        <a href="" class="active">
+                        <button class="btnEntrar" onclick="cadastrar()"><a href="./login.html">Cadastrar</a></button>
+                    </a>
+                    </div>
+                    
+                    
+                    <div class="area-logar">
+                        <p>Já possuí uma conta?</p>
+                        
+                        <button class="btnRegistrar" onclick="entrar()"><a href="../tela/login.html">Entrar</a></button>
+                        
+                    </div>
+
+                </form>
+            </div>
+            
+            <img class="imgJett" src="../imagem/JettLogin.png" alt="">
+            
+        </section>
+        <link rel="stylesheet" href="./script.js">
+    </main>
+</body>
+</html>
+<script>
+
+function cadastrar() {
+        aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = ipt_nome.value;
+        var emailVar = ipt_email.value;
+        var senhaVar = ipt_senha.value;
+        var cpfVar = ipt_cpf.value;
+        var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+</script>
