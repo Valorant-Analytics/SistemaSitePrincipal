@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz de Valorant</title>
+</head>
+<style>
+@import url('https://fonts.cdnfonts.com/css/valorant');
+    body {
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin-left: 24%;
+        margin-top: 4%;
+
+        background-image: url("../imagem/wallpaperQuiz.png");
+ 
+        background-size: 100% 100%;
+        background-repeat: no-repeat, repeat-x;
+
+    }
+
+p{
+    display: flex;
+    justify-content: space-around ;
+    padding: 3px;
+    font-size: 28px;
+    font-family: 'Grold';
+}
+
+label{
+    padding: 3px;
+    font-size: 26px;
+    font-family: 'Grold';
+}
+
+input{
+    padding: 3px;
+    font-size: 38px;
+    font-family: 'Grold';
+}
+
+.container {
+    position: relative;
+
+  max-width: 900px;
+  max-height: 600px;
+  padding: 60px;
+  text-align: center;
+  background-color: #fff1df;
+  box-shadow: black 1px 1px 20px;
+  border: none;
+  border-radius: 25px;
+
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+
+  font-size: 50px;
+  margin-top: 0%;
+  margin-bottom: 20px;
+  font-family: 'valorant';
+}
+
+#question{
+    font-size: 30px;
+    font-family: 'Grold';
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-family: 'Grold';
+  
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+  
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: black 1px 1px 6px;
+  cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.08);
+  background-color: #45a049;
+}
+
+#result {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  
+}
+
+a{
+    font-family: 'Grold';
+    color: #456fa0;
+    text-decoration: none;
+}
+
+
+</style>
+
+<body>
+    <div class="background">
+
+        <div class="container">
+            <h1>Quiz de Valorant</h1>
+            
+            <br>
+            <b><p id="question"></p></b><br><br>
+            <input type="radio" name="answer" value="A" id="optionA">
+            <label for="optionA" id="labelA"></label><br><br>
+
+            <input type="radio" name="answer" value="B" id="optionB">
+            <label for="optionB" id="labelB"></label><br><br>
+
+            <input type="radio" name="answer" value="C" id="optionC">
+            <label for="optionC" id="labelC"></label><br><br>
+
+            <input type="radio" name="answer" value="D" id="optionD">
+            <label for="optionD" id="labelD"></label><br><br><br>
+            <button onclick="checkAnswer()">Verificar Resposta</button>
+            <br><br>
+            <a href="./Site.html"> VOLTAR PARA O SITE</a>
+            <p id="result"></p>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>
+<script>
+    var questions = [
+  {
+    question: "Qual arma finaliza com um tiro no peito?",
+    answers: {
+      A: "Vandal",
+      B: "Operetor",
+      C: "Classic",
+      D: "Guardian"
+    },
+    correctAnswer: "B"
+  },
+  {
+    question: "O que é KD?",
+    answers: {
+      A: "Proporção entre número de Abates e Mortes durante uma partida",
+      B: "Proporção entre número de Vitória e Derrota durante uma partida",
+      C: "Um modo de jogo no valorant",
+      D: "Nome de uma arma"
+    },
+    correctAnswer: "A"
+  },
+  {
+    question: "Qual o nome da pistola mais cara?",
+    answers: {
+      A: "Frenzy",
+      B: "Bucky",
+      C: "Sheriff",
+      D: "Ghost"
+    },
+    correctAnswer: "C"
+  },
+  {
+    question: "Há quantos jogadores em uma partida?",
+    answers: {
+      A: "6 contra 6",
+      B: "4 contra 4",
+      C: "5 contra 5",
+      D: "5 contra 6"
+    },
+    correctAnswer: "C"
+  },
+  {
+    question: "Quantos elos existem no Valorant?",
+    answers: {
+      A: "9",
+      B: "12",
+      C: "10",
+      D: "7"
+    },
+    correctAnswer: "A"
+  }
+];
+
+var currentQuestion = 0;
+var score = 0;
+
+function loadQuestion() {
+  var question = questions[currentQuestion];
+  var questionElement = document.getElementById("question");
+  var optionA = document.getElementById("labelA");
+  var optionB = document.getElementById("labelB");
+  var optionC = document.getElementById("labelC");
+  var optionD = document.getElementById("labelD");
+
+  questionElement.textContent = question.question;
+  optionA.textContent = question.answers.A;
+  optionB.textContent = question.answers.B;
+  optionC.textContent = question.answers.C;
+  optionD.textContent = question.answers.D;
+}
+
+function checkAnswer() {
+  var selectedOption = document.querySelector("input[name=answer]:checked");
+  if (!selectedOption) {
+    alert("Por favor, selecione uma opção.");
+    return;
+  }
+
+  var answer = selectedOption.value;
+  if (answer === questions[currentQuestion].correctAnswer) {
+    score++;
+  }
+
+  selectedOption.checked = false;
+  currentQuestion++;
+
+  if (currentQuestion === questions.length) {
+    var resultElement = document.getElementById("result");
+    resultElement.textContent = "Você acertou " + score + " de " + questions.length + " perguntas.";
+    return;
+  }
+
+  loadQuestion();
+}
+
+loadQuestion();
+
+</script>

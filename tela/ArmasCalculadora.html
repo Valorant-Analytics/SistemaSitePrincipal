@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        
+        <link rel="stylesheet" href="../css/styleArmas.css">
+    </head>
+    <body>
+    <img class="sla" src="../imagem/valorantWallpaperCalculadora.jpg" alt="">
+    <div class="box">  
+        
+            <p class="titulo">Calcular Dano</p>
+            <br><br>
+
+        <div class="textos">
+            <div class="escolhaArma">
+                
+                <p>Escolha a Arma:</p>
+                <input id="ipt_selecioneArma" placeholder="SELECIONAR ARMA" list="guns">
+
+                <datalist id="guns">
+                    <option value="Classic">
+                    <option value="Shorty">
+                    <option value="Frenzy">
+                    <option value="Ghost">
+                    <option value="Sheriff">
+                    <option value="Stinger">
+                    <option value="Spectre">
+                    <option value="Bucky">
+                    <option value="Judge">
+                    <option value="Ares">
+                    <option value="Odin">
+                    <option value="Guardian">
+                    <option value="Bulldog">
+                    <option value="Vandal">
+                    <option value="Phantom">
+                    <option value="Marshal">
+                    <option value="Operator">
+                </datalist>
+                
+            </div>
+                <br>
+                <br>
+            <p>Tiros na Cabeça: <input id="ipt_tiroCabeca" type="number"></p>
+            <br>
+            <p>Tiros no Peito: <input id="ipt_tiroPeito" type="number"></p>
+            <br>
+            <p>Tiros na Perna: <input id="ipt_tiroPerna" type="number"></p>
+            <br>
+            <button onclick="calcular()">Calcular Dano</button>
+            
+            <button onclick="lastGun()">Histórico Arma</button>
+                    <br><br>
+            <p class="dados">Dados:</p><br>
+            <div id="div_calcular"></div>
+            <div id="div_ultimaArma"></div>
+        </div>
+    </div>
+    <img class="ArmasLoja" src="../imagem/armasValorant.png" alt="">
+</body>
+</html>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+
+var armas = {
+    pistolas: {
+        classic: {
+            danoCabeça: 78,
+            danoPeito: 26,
+            danoPerna: 22,
+        },
+
+        shorty: {
+            danoCabeça: 36,
+            danoPeito: 12,
+            danoPerna: 10,
+        },
+
+        frenzy: {
+            danoCabeça: 78,
+            danoPeito: 26,
+            danoPerna: 22,
+        },
+
+        ghost: {
+            danoCabeça: 105,
+            danoPeito: 30,
+            danoPerna: 26,
+        },
+
+        sheriff: {
+            danoCabeça: 160,
+            danoPeito: 55,
+            danoPerna: 47,
+        },
+        
+    },
+
+    smg: {
+        stinger: {
+            danoCabeça: 67,
+            danoPeito: 27,
+            danoPerna: 23,
+        },
+
+        spectre: {
+            danoCabeça: 78,
+            danoPeito: 26,
+            danoPerna: 22,
+        },
+    },
+
+    heavy: {
+        ares: {
+            danoCabeça: 72,
+            danoPeito: 30,
+            danoPerna: 25,
+        },
+
+        odin: {
+            danoCabeça: 95,
+            danoPeito: 38,
+            danoPerna: 32,
+        }
+    },
+
+    shotguns: {
+        bucky: {
+            danoCabeça: 44,
+            danoPeito: 22,
+            danoPerna: 19,
+        },
+
+        judge: {
+            danoCabeça: 34,
+            danoPeito: 17,
+            danoPerna: 14,
+        },
+    },
+
+    rifles: {
+        vandal: {
+            danoCabeça: 156,
+            danoPeito: 39,
+            danoPerna: 33,
+        },
+
+        phantom: {
+            danoCabeça: 156,
+            danoPeito: 39,
+            danoPerna: 33,
+        },
+
+        bulldog: {
+            danoCabeça: 116,
+            danoPeito: 35,
+            danoPerna: 30,
+        },
+
+        guardian: {
+            danoCabeça: 195,
+            danoPeito: 65,
+            danoPerna: 49,
+        },
+    },
+    
+    snipers: {
+        marshal: {
+            danoCabeça: 202,
+            danoPeito: 101,
+            danoPerna: 85,
+        },
+        operator: {
+            danoCabeça: 255,
+            danoPeito: 150,
+            danoPerna: 127,
+        }
+    }
+
+}
+
+    var lista_ultimaArma = []
+
+function calcular(){
+    var Cabeça = Number(ipt_tiroCabeca.value);
+    var Peito = Number(ipt_tiroPeito.value);
+    var Perna = Number(ipt_tiroPerna.value);
+    var total = Cabeça + Peito + Perna
+
+    var selecioneArma = ipt_selecioneArma.value
+
+    lista_ultimaArma.push(selecioneArma)
+    
+    if(selecioneArma == ""){
+        swal("Ops!", "Selecione uma arma!", "error");
+        return
+    }
+
+    if(Cabeça < 0|| Peito < 0 || Perna < 0  ){
+        swal("Ops!", "Insira um valor acima de 0!", "error");
+        return
+    }
+//----------------------RIFLES-------------------------------------
+    if(selecioneArma == 'Vandal' || selecioneArma == 'Phantom'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.rifles.vandal.danoCabeça * Cabeça + 
+        armas.rifles.vandal.danoPeito * Peito + 
+        armas.rifles.vandal.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.rifles.vandal.danoCabeça} dano<br>
+        Peito: ${armas.rifles.vandal.danoPeito} dano<br>
+        Perna: ${armas.rifles.vandal.danoPerna} dano<br><br>
+        `
+
+    }else if(selecioneArma == 'Bulldog'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.rifles.bulldog.danoCabeça * Cabeça + 
+        armas.rifles.bulldog.danoPeito * Peito + 
+        armas.rifles.bulldog.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.rifles.bulldog.danoCabeça} dano<br>
+        Peito: ${armas.rifles.bulldog.danoPeito} dano<br>
+        Perna: ${armas.rifles.bulldog.danoPerna} dano<br><br>
+        `
+        
+    }else if(selecioneArma == 'Guardian'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.rifles.guardian.danoCabeça * Cabeça + 
+        armas.rifles.guardian.danoPeito * Peito + 
+        armas.rifles.guardian.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.rifles.guardian.danoCabeça} dano<br>
+        Peito: ${armas.rifles.guardian.danoPeito} dano<br>
+        Perna: ${armas.rifles.guardian.danoPerna} dano<br><br>
+        `
+
+//----------------------PISTOLA-------------------------------------
+    }else if(selecioneArma == 'Classic'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total:
+        ${armas.pistolas.classic.danoCabeça * Cabeça + 
+        armas.pistolas.classic.danoPeito * Peito + 
+        armas.pistolas.classic.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.pistolas.classic.danoCabeça} dano<br>
+        Peito: ${armas.pistolas.classic.danoPeito} dano<br>
+        Perna: ${armas.pistolas.classic.danoPerna} dano<br><br>
+        
+        `
+
+    }else if(selecioneArma == 'Shorty'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.pistolas.shorty.danoCabeça * Cabeça + 
+        armas.pistolas.shorty.danoPeito * Peito + 
+        armas.pistolas.shorty.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.pistolas.shorty.danoCabeça} dano<br>
+        Peito: ${armas.pistolas.shorty.danoPeito} dano<br>
+        Perna: ${armas.pistolas.shorty.danoPerna} dano<br><br>
+        `
+
+    }else if(selecioneArma == 'Frenzy'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.pistolas.frenzy.danoCabeça * Cabeça + 
+        armas.pistolas.frenzy.danoPeito * Peito + 
+        armas.pistolas.frenzy.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.pistolas.frenzy.danoCabeça} dano<br>
+        Peito: ${armas.pistolas.frenzy.danoPeito} dano<br>
+        Perna: ${armas.pistolas.frenzy.danoPerna} dano<br><br>
+        `
+
+    }else if(selecioneArma == 'Ghost'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.pistolas.ghost.danoCabeça * Cabeça + 
+        armas.pistolas.ghost.danoPeito * Peito + 
+        armas.pistolas.ghost.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.pistolas.ghost.danoCabeça} dano<br>
+        Peito: ${armas.pistolas.ghost.danoPeito} dano<br>
+        Perna: ${armas.pistolas.ghost.danoPerna} dano<br><br>
+        `
+
+    }else if(selecioneArma == 'Sheriff'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.pistolas.sheriff.danoCabeça * Cabeça + 
+        armas.pistolas.sheriff.danoPeito * Peito + 
+        armas.pistolas.sheriff.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.pistolas.sheriff.danoCabeça} dano<br>
+        Peito: ${armas.pistolas.sheriff.danoPeito} dano<br>
+        Perna: ${armas.pistolas.sheriff.danoPerna} dano<br><br>
+        `
+
+//----------------------SMG-------------------------------------
+    }else if(selecioneArma == 'Stinger'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.smg.stinger.danoCabeça * Cabeça + 
+        armas.smg.stinger.danoPeito * Peito + 
+        armas.smg.stinger.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.smg.stinger.danoCabeça} dano<br>
+        Peito: ${armas.smg.stinger.danoPeito} dano<br>
+        Perna: ${armas.smg.stinger.danoPerna} dano<br><br>
+        `
+    }else if(selecioneArma == 'Spectre'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.smg.spectre.danoCabeça * Cabeça + 
+        armas.smg.spectre.danoPeito * Peito + 
+        armas.smg.spectre.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.smg.spectre.danoCabeça} dano<br>
+        Peito: ${armas.smg.spectre.danoPeito} dano<br>
+        Perna: ${armas.smg.spectre.danoPerna} dano<br><br>
+        `
+
+//----------------------HEAVY-------------------------------------
+    }else if(selecioneArma == 'Ares'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.heavy.ares.danoCabeça * Cabeça + 
+        armas.heavy.ares.danoPeito * Peito + 
+        armas.heavy.ares.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.heavy.ares.danoCabeça} dano<br>
+        Peito: ${armas.heavy.ares.danoPeito} dano<br>
+        Perna: ${armas.heavy.ares.danoPerna} dano<br><br>
+        `
+    }else if(selecioneArma == 'Odin'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.heavy.odin.danoCabeça * Cabeça + 
+        armas.heavy.odin.danoPeito * Peito + 
+        armas.heavy.odin.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.heavy.odin.danoCabeça} dano<br>
+        Peito: ${armas.heavy.odin.danoPeito} dano<br>
+        Perna: ${armas.heavy.odin.danoPerna} dano<br><br>
+        `
+
+//----------------------SHOTGUN-------------------------------------
+    }else if(selecioneArma == 'Bucky'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.shotguns.bucky.danoCabeça * Cabeça + 
+        armas.shotguns.bucky.danoPeito * Peito + 
+        armas.shotguns.bucky.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.shotguns.bucky.danoCabeça} dano<br>
+        Peito: ${armas.shotguns.bucky.danoPeito} dano<br>
+        Perna: ${armas.shotguns.bucky.danoPerna} dano<br><br>
+        `
+    }else if(selecioneArma == 'Judge'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.shotguns.judge.danoCabeça * Cabeça + 
+        armas.shotguns.judge.danoPeito * Peito + 
+        armas.shotguns.judge.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.shotguns.judge.danoCabeça} dano<br>
+        Peito: ${armas.shotguns.judge.danoPeito} dano<br>
+        Perna: ${armas.shotguns.judge.danoPerna} dano<br><br>
+        `
+
+//----------------------SNIPERS-------------------------------------
+
+    }else if(selecioneArma == 'Marshal'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.snipers.marshal.danoCabeça * Cabeça + 
+        armas.snipers.marshal.danoPeito * Peito + 
+        armas.snipers.marshal.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.snipers.marshal.danoCabeça} dano<br>
+        Peito: ${armas.snipers.marshal.danoPeito} dano<br>
+        Perna: ${armas.snipers.marshal.danoPerna} dano<br><br>
+        `
+    }else if(selecioneArma == 'Operator'){
+
+        div_calcular.innerHTML = 
+        `
+        Total Tiros: ${total} tiros<br>
+        Dano Total: 
+        ${armas.snipers.operator.danoCabeça * Cabeça + 
+        armas.snipers.operator.danoPeito * Peito + 
+        armas.snipers.operator.danoPerna * Perna}<br><br>
+        Cabeça: ${armas.snipers.operator.danoCabeça} dano<br>
+        Peito: ${armas.snipers.operator.danoPeito} dano<br>
+        Perna: ${armas.snipers.operator.danoPerna} dano<br><br>
+        `
+    }else{
+        swal("Ops!", "Selecione uma arma!", "error");
+        return
+    }
+
+    
+
+}
+
+
+function lastGun(){
+    
+    // for(i = 0; lista_ultimaArma.length > 0; i++){
+
+    // }
+    for(i = 0; i < lista_ultimaArma.length; i++){
+        div_ultimaArma.innerHTML = 
+        `
+        <p class="Última Arma">Histórico de Armas:</p>
+        <b>Pesquisou um total de ${i+1} armas</b><br>
+        <b>Sua última arma foi ${lista_ultimaArma[lista_ultimaArma.length -1]}</b>
+        `
+
+    }
+
+}
+</script>

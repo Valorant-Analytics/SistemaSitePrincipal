@@ -1,0 +1,808 @@
+@import url('https://fonts.cdnfonts.com/css/valorant');
+@import url('https://8font.com/wp-content/uploads/2021/10/Tungsten-Bold.ttf');
+@font-face {
+    font-family: 'Grold';
+    src: url(../css/imgCadastro/grold-regular.ttf) format('truetype');
+  }
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*::-webkit-scrollbar{
+    width: 9px;
+}
+
+*::-webkit-scrollbar-track{
+    background:#302e2e;
+
+}
+
+*::-webkit-scrollbar-thumb{
+    background-color:#eb6d46;
+    border-radius: 8px;
+    border: 3px solid #ffffff;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+
+
+
+body{
+    background: #ece8e1;   
+}
+
+.nav{
+    
+    width: 100%;
+    height: 80px;
+    background: #111111;
+}
+
+.logo{
+    position: absolute;
+    width: 4%;
+    height: 8.7%;
+    left: 47%;
+    top: 0.8%;
+}
+
+.GifMenu{
+    position: absolute;
+    width: 100%;
+    height: 82%;
+
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+.valorantTextGif{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 32.7%;
+    top: 29.3%;
+    
+    font-family:'valorant';
+    font-style: normal;
+    font-size: 812%;
+    line-height: 160%;
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.03em;
+
+color: #ece8e1;
+mix-blend-mode: normal;
+}
+
+.analitycsTextGif{
+    font-family:'valorant';
+    position: absolute;
+    left: 43.6%;
+    top: 43.5%;
+    
+    font-style: normal;
+    font-size: 504%;
+    line-height: 160%;
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.03em;
+    
+    color: #ece8e1;
+    mix-blend-mode: normal;
+}
+
+.subLinhaNav{
+
+    height: 1px;
+    background: radial-gradient(215.54% 2049.13% at 86.82% 73.96%, #fd8873 0%, rgba(0, 0, 0, 0) 100%) #FF3342;
+}
+
+
+/*-------------------NAV BAR 1--------------------------------------------------------------------------------------------------- */
+.menuNav1{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0%;
+    gap: 28%;
+    font-family: 'Grold';
+    position: absolute;
+    width: 23%;
+    left: 19.5%;
+    top: 3.1%;
+    
+}
+
+.valorantLogo{
+    position: absolute;
+ 
+    height: 1%;
+    left: 5.2%;
+    top: 3.5%;
+    font-family:'valorant';
+    position: absolute;
+    
+    font-style: normal;
+    font-size: 125%;
+    line-height: 160%;
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.03em;
+    
+    color: #ffffff;
+    mix-blend-mode: normal;
+    
+}
+
+.analitycsLogo{
+    position: absolute;
+    height: 1.5%;
+    left: 6.1%;
+    top: 5%;
+    font-family:'valorant';
+    position: absolute;
+    
+    font-style: normal;
+    font-size: 95%;
+    line-height: 160%;
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.03em;
+    
+    color: #ffffff;
+    mix-blend-mode: normal;
+}
+
+.informacaoJogo{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 104%;
+    line-height: 165%;
+    text-decoration: none;
+    
+    color: #FFFFFF;
+}
+
+.noticias{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 104%;
+    line-height: 150%;
+    text-decoration: none;
+    
+    color: #FFFFFF;
+}
+
+.esports{
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 104%;
+    line-height: 150%;
+    text-decoration: none;
+    
+    color: #FFFFFF;
+}
+
+/*-------------------NAV BAR 2 ---------------------------------------------------------------------------------------------------*/
+.menuNav2{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 25%;
+    
+    position: absolute;
+    width: 23%;
+    left: 62.5%;
+    top: 3.1%;
+    
+}
+
+.social{
+    
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 104%;
+    line-height: 150%;
+    text-decoration: none;
+    
+    color: #FFFFFF;
+    
+}
+
+.suporte{
+    
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 104%;
+    line-height: 150%;
+    text-decoration: none;
+    
+    color: #FFFFFF;
+    
+}
+
+.contato{
+    
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 104%;
+    line-height: 150%;
+    text-decoration: none;
+    
+    color: #FFFFFF;
+    
+}
+
+/*-------------------BOTAO ENTRAR ---------------------------------------------------------------------------------------------------*/
+
+.BotaoEntrar{
+    position: absolute;
+    width: 8%;
+    height: 5.2%;
+    left: 87%;
+    top: 2%;
+}
+
+.entrar{
+    position: absolute;
+left: 31.11%;
+right: 33.11%;
+top: 30.25%;
+bottom: 31.25%;
+width: 80%;
+font-family: 'Arial';
+font-style: normal;
+font-weight: 700;
+font-size: 90%;
+line-height: 150%;
+text-decoration: none;
+
+color: #000000;
+
+
+}
+
+.retanguloBtnEntrar{
+    position: absolute;
+    left: 5.41%;
+    right: 5.41%;
+    top: 14.58%;
+    bottom: 14.58%;
+    
+    background: radial-gradient(215.54% 2049.13% at 86.82% 73.96%, #FF7D66 0%, rgba(0, 0, 0, 0) 100%), #FF3342;
+    border-radius: 12px;
+}
+
+.BotaoEntrar:hover{
+    transform: scale(1.06);
+}
+
+.linhaMenuL{
+    display: flex;
+    position: relative;
+    width: 0.01%;
+    height: 4600px;
+    left: 18.2%;
+    top: -20px;
+    
+}
+
+
+
+.MenuMais{
+    position: absolute;
+    width: 1.4%;
+    height: 1.3%;
+    left: 2.2%;
+    top: 3.6%;
+}
+
+.retanguloNav{
+    position: absolute;
+    display: flex;
+    top: 75%;
+}
+
+.retanguloTest{
+    position: absolute;
+    width: 100%;
+    height:30%;
+    top: 81%;
+    background-color: #ece8e1;
+}
+
+.WeAre{
+    position: absolute;
+    left: 12.3%;
+    top: 72%;
+    
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1720%;
+    line-height: 150%;
+    text-decoration: none;
+    color:#ece8e1;
+    text-shadow: 0px 0 #d4d1cb, -1px 0 #d4d1cb, 0 1px #d4d1cb, 0 -1px #d4d1cb,
+             1px 0px #d4d1cb, -1px -1px #d4d1cb, 1px -1px #d4d1cb, -1px 1px #d4d1cb;
+}
+
+.Valoran{
+    position: absolute; 
+
+    left: 16.5%;
+    top: 101%;
+    
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1720%;
+    line-height: 150%;
+    text-decoration: none;
+    color:#ece8e1;
+    text-shadow: 0px 0 #d4d1cb, -1px 0 #d4d1cb, 0 1px #d4d1cb, 0 -1px #d4d1cb,
+             1px 0px #d4d1cb, -1px -1px #d4d1cb, 1px -1px #d4d1cb, -1px 1px #d4d1cb;
+}
+
+.SobreJogo{
+    position: absolute; 
+    left: 18.1%;
+    top: 84.7%;
+    
+    font-family: 'impact';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 110px;
+    line-height: 150%;
+    text-decoration: none;
+    letter-spacing:2px;
+    color:#ff4655;
+}
+
+.primeiroQuadrado{
+    position: absolute;
+    width: 20.5%;
+    height: 22.2%;
+    left:18.2%;
+    top: 97.5%;
+    background-color: #303030;
+}
+
+.descPrimeiroQuadro{
+    position: absolute;
+    width: 20.5%;
+    height: 22.2%;
+    left:19.4%;
+    top: 121.8%;
+
+    font-family: 'impact';
+    font-weight: 100;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing:0.5px;
+    color:#ff4655;
+}
+
+.textoPrimeiroQuadro{
+    position: absolute;
+    width: 20%;
+    left:18.2%;
+    top: 125.5%;
+
+    font-family: 'arial';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing:1px;
+    color:#303030;
+    
+}
+
+.segundoQuadrado{
+    position: absolute;
+    width: 20.5%;
+    height: 22.2%;
+    left:40.5%;
+    top: 97.5%;
+    background-color: #303030;
+}
+
+.descSegundoQuadro{
+    position: absolute;
+    left: 41.6%;
+    top: 121.8%;
+
+    font-family: 'impact';
+    font-weight: 100;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing:0.5px;
+    color:#ff4655;
+}
+
+.textoSegundoQuadro{
+    position: absolute;
+    width: 20%;
+    height: 22.2%;
+    left: 40.3%;
+    top: 125.5%;
+
+    font-family: 'arial';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing:1px;
+    color:#0f1923;
+    
+}
+
+.terceiroQuadrado{
+    position: absolute;
+    width: 20.5%;
+    height: 22.2%;
+    left:62.7%;
+    top: 97.5%;
+    background-color: #0f1923;
+}
+
+.descTerceiroQuadro{
+    position: absolute;
+    left: 64.4%;
+    top: 121.8%;
+
+    font-family: 'impact';
+    font-weight: 100;
+    font-size: 15px;
+    line-height: 150%;
+    letter-spacing:0.5px;
+    color:#ff4655;
+}
+
+.textoTerceiroQuadro{
+    position: absolute;
+    width: 20%;
+    height: 22.2%;
+    left: 62.8%;
+    top: 125.5%;
+
+    font-family: 'arial';
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing:1px;
+    color:#0f1923;
+}
+
+.retanguloAgentes{
+    position: absolute;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+    height: 70%;
+    left: 0%;
+    right: 5.41%;
+    top: 143%;
+    
+    background: radial-gradient(30.54% 2049.13% at 15.82% 200.96%, #f56363 0%, rgba(0, 0, 0, 0) 100%), #FF3342;   
+}
+
+.oqueé{
+    display: flex;
+    position: relative;
+    left: 18.3%;
+    top: 3%;
+    width: 50%;
+
+    font-family: 'impact';
+    font-weight: 100;
+    font-size: 80px;
+    line-height: 150%;
+    letter-spacing:0.5px;
+    color:#ece8e1;
+}
+
+.descricaoValorant{
+    display: flex;
+    position: relative;
+    left: 18.3%;
+    top: 3%;
+    width: 72%;
+
+    font-family: 'grold';
+    font-weight: 100;
+    font-size: 24px;
+    line-height: 160%;
+    letter-spacing:0.5px;
+    color:#ece8e1;
+}
+
+.cards{
+    display: grid;
+    justify-content:end;
+    align-items: center;
+
+    
+    padding: 3%; 
+    margin-top: 66.3%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 13px;
+    background: radial-gradient(30.54% 2049.13% at 15.82% 200.96%, #f56363 0%, rgba(0, 0, 0, 0) 100%), #FF3342;   
+}
+
+.imgAgente{
+    margin-top: 7%;
+
+    height: 100px;
+    padding: 4%;
+    
+    background-color: #303030;
+    border-radius: 8px;
+}
+
+.linhaMapas{
+    position: absolute;
+    width: 50%;
+    height: 0.1%;
+    left: 24.5%;
+    right: 5.41%;
+    top: 223%;
+
+    background: #303030;
+}
+
+.place{
+    position: absolute;
+    left: 12%;
+    top: 211%;
+    
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 300px;
+    line-height: 150%;
+    text-decoration: none;
+    color:#ece8e1;
+    text-shadow: 0px 0 #d4d1cb, -1px 0 #d4d1cb, 0 1px #d4d1cb, 0 -1px #d4d1cb,
+             1px 0px #d4d1cb, -1px -1px #d4d1cb, 1px -1px #d4d1cb, -1px 1px #d4d1cb;    
+}
+
+.grupoKD{
+    position: absolute;
+    left: 24.5%;
+    top: 230%;
+    width: 60%;
+}
+
+.mapas{
+
+
+    font-family: 'impact';
+    font-weight: 100;
+    font-size: 5rem;
+    line-height: 150%;
+    letter-spacing:0.5px;
+    color:#0f1923;
+}
+
+
+.descricaoKD{
+    position: relative;
+    margin-top: 6.3%;
+    font-family: 'grold';
+    font-weight: 100;
+    font-size: 32px;
+    letter-spacing:0.5px;
+    color:#101a24;
+}
+
+.grupoWinRate{
+    position: absolute;
+    left: 24.5%;
+    top: 290%;
+    width: 60%;
+}
+
+
+.oqéWinrate{
+    margin-top: -2%;
+  
+    font-family: 'impact';
+    font-weight: 100;
+    font-size: 5rem;
+    line-height: 150%;
+    letter-spacing:0.5px;
+    color:#080e14;
+
+}
+
+.descricaoWinrate{
+    position: absolute;
+    margin-top: 6%;
+    margin-left: 0%;
+    width: 100%;
+    font-family: 'grold';
+    font-weight: 100;
+    font-size: 32px;
+    letter-spacing:0.5px;
+    color:#101a24; 
+}
+
+.linhaWinrate{
+    position: absolute;
+    width: 50%;
+    height: 0.1%;
+    left: 24.5%;
+    right: 5.41%;
+    top: 280%;
+
+    background: #303030;
+}
+
+.retanguloSobreMim{
+    padding: 30px;
+    position: relative;
+ 
+    background-color: #101a24;
+    width: 38%;
+    
+    margin-top: 168%;
+    margin-left: 31%;
+    border-radius: 20px;
+    box-shadow: #000000 1px 1px 20px;
+    background-image: linear-gradient(#000000, rgb(160, 67, 67));
+   
+}
+
+.retanguloSobreMim:hover{
+    -ms-transform: scale(1.1);
+    transform: scale(1.02);
+}
+
+.sobreMim{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 1.1%;
+    margin-left: 23%;
+    width: 60%;
+    font-family: 'Valorant';
+    font-weight: 800;
+    font-size: 62px;
+    letter-spacing:0.5px;
+    color:#ffffff;
+}
+
+p{
+    font-family: 'grold';
+    font-size: 30px;
+    color: #e4e4e4;
+}
+
+span{
+    font-family: 'grold';
+    font-size: 22px;
+    color: #cacaca;
+}
+
+.eu{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 300px;
+    width: 40%;
+
+    margin-left: 31%;
+    margin-top: -2%;
+}
+
+.meuRad{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 20px;
+    width: 25%;
+
+    margin-left: 52%;
+    margin-top: -10%;
+}
+
+.desc{
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+}
+
+footer{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: #000000;
+    height: 14.5%;
+
+    color: white;
+
+    margin-top: 5%;
+}
+
+.copyright{
+
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-top: 2%;
+
+}
+
+b{
+
+    margin-left: 32%;
+    font-family: 'valorant';
+    font-size: 16px;
+}
+
+.contatoFooter{
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+
+    margin-left: 83%;
+    margin-top:2.7%;
+    
+    font-family: 'grold';
+    font-size: 17px;
+}
+
+.logoBaixo{
+    
+    position: absolute;
+    font-family:'valorant';
+    text-decoration: none;
+    margin-left: 4%;
+    margin-top:2.7%;
+color: white;
+}
+
+.aboutMEsecond{
+    position: absolute;
+    width: 80%;
+    left: 12%;
+    margin-top: 183%;
+    
+    font-family: 'Arial';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 255px;
+    line-height: 150%;
+    text-decoration: none;
+    color:#ece8e1;
+    text-shadow: 0px 0 #d4d1cb, -1px 0 #d4d1cb, 0 1px #d4d1cb, 0 -1px #d4d1cb,
+             1px 0px #d4d1cb, -1px -1px #d4d1cb, 1px -1px #d4d1cb, -1px 1px #d4d1cb;        
+}
