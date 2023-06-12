@@ -24,11 +24,11 @@ body{
     margin-left: 1%;
     
     width: 23%;
-    height: 65%;
+    height: 76%;
     margin-left: 2%;
     margin-top: 2%;
     border-radius: 25px;
-    background: radial-gradient(215.54% 2049.13% at 86.82% 73.96%, #6aa5fd 0%, rgba(0, 0, 0, 0) 100%) #339cff;
+    background: radial-gradient(215.54% 2049.13% at 86.82% 73.96%, #6aa5fd 0%, rgba(0, 0, 0, 0) 100%) #acb9c5;
     box-shadow: #000000 1px 1px 12px;
     padding: 2%;
 }

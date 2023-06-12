@@ -73,9 +73,8 @@ function cadastrar() {
            //ARRUMAR ALERT PARA INNERHTML
           //alert("Insira valores em todos os campos!");
 
-          swal("Ops!", "Insira valores em todos os campos!", "error");
-          
-            return false;
+          setInterval(swal("Ops!", "Insira valores em todos os campos!", "error"),2000);         
+          return false;
         }
         else {
             setInterval(alert, 5000)

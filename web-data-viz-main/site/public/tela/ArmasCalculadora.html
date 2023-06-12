@@ -19,7 +19,7 @@
             <div class="escolhaArma">
                 
                 <p>Escolha a Arma:</p>
-                <input id="ipt_selecioneRank" placeholder="SELECIONAR ARMA" list="guns">
+                <input id="ipt_selecioneArma" placeholder="SELECIONAR ARMA" list="guns">
 
                 <datalist id="guns">
                     <option value="Classic">
@@ -42,18 +42,21 @@
                 </datalist>
                 
             </div>
-            
+                <br>
                 <br>
             <p>Tiros na Cabeça: <input id="ipt_tiroCabeca" type="number"></p>
-        
+            <br>
             <p>Tiros no Peito: <input id="ipt_tiroPeito" type="number"></p>
-    
+            <br>
             <p>Tiros na Perna: <input id="ipt_tiroPerna" type="number"></p>
-     
+            <br>
             <button onclick="calcular()">Calcular Dano</button>
+            
+            <button onclick="lastGun()">Histórico Arma</button>
                     <br><br>
             <p class="dados">Dados:</p><br>
             <div id="div_calcular"></div>
+            <div id="div_ultimaArma"></div>
         </div>
     </div>
     <img class="ArmasLoja" src="../imagem/armasValorant.png" alt="">
@@ -179,17 +182,19 @@ var armas = {
 
 }
 
+    var lista_ultimaArma = []
+
 function calcular(){
     var Cabeça = Number(ipt_tiroCabeca.value);
     var Peito = Number(ipt_tiroPeito.value);
     var Perna = Number(ipt_tiroPerna.value);
     var total = Cabeça + Peito + Perna
 
-    var lista_armas = guns.value
+    var selecioneArma = ipt_selecioneArma.value
 
-    var selecioneRank = ipt_selecioneRank.value
-
-    if(selecioneRank == ""){
+    lista_ultimaArma.push(selecioneArma)
+    
+    if(selecioneArma == ""){
         swal("Ops!", "Selecione uma arma!", "error");
         return
     }
@@ -199,7 +204,7 @@ function calcular(){
         return
     }
 //----------------------RIFLES-------------------------------------
-    if(selecioneRank == 'Vandal' || selecioneRank == 'Phantom'){
+    if(selecioneArma == 'Vandal' || selecioneArma == 'Phantom'){
 
         div_calcular.innerHTML = 
         `
@@ -210,10 +215,10 @@ function calcular(){
         armas.rifles.vandal.danoPerna * Perna}<br><br>
         Cabeça: ${armas.rifles.vandal.danoCabeça} dano<br>
         Peito: ${armas.rifles.vandal.danoPeito} dano<br>
-        Perna: ${armas.rifles.vandal.danoPerna} dano<br>
+        Perna: ${armas.rifles.vandal.danoPerna} dano<br><br>
         `
 
-    }else if(selecioneRank == 'Bulldog'){
+    }else if(selecioneArma == 'Bulldog'){
 
         div_calcular.innerHTML = 
         `
@@ -224,10 +229,10 @@ function calcular(){
         armas.rifles.bulldog.danoPerna * Perna}<br><br>
         Cabeça: ${armas.rifles.bulldog.danoCabeça} dano<br>
         Peito: ${armas.rifles.bulldog.danoPeito} dano<br>
-        Perna: ${armas.rifles.bulldog.danoPerna} dano<br>
+        Perna: ${armas.rifles.bulldog.danoPerna} dano<br><br>
         `
         
-    }else if(selecioneRank == 'Guardian'){
+    }else if(selecioneArma == 'Guardian'){
 
         div_calcular.innerHTML = 
         `
@@ -238,11 +243,11 @@ function calcular(){
         armas.rifles.guardian.danoPerna * Perna}<br><br>
         Cabeça: ${armas.rifles.guardian.danoCabeça} dano<br>
         Peito: ${armas.rifles.guardian.danoPeito} dano<br>
-        Perna: ${armas.rifles.guardian.danoPerna} dano<br>
+        Perna: ${armas.rifles.guardian.danoPerna} dano<br><br>
         `
 
 //----------------------PISTOLA-------------------------------------
-    }else if(selecioneRank == 'Classic'){
+    }else if(selecioneArma == 'Classic'){
 
         div_calcular.innerHTML = 
         `
@@ -253,11 +258,11 @@ function calcular(){
         armas.pistolas.classic.danoPerna * Perna}<br><br>
         Cabeça: ${armas.pistolas.classic.danoCabeça} dano<br>
         Peito: ${armas.pistolas.classic.danoPeito} dano<br>
-        Perna: ${armas.pistolas.classic.danoPerna} dano<br>
+        Perna: ${armas.pistolas.classic.danoPerna} dano<br><br>
         
         `
 
-    }else if(selecioneRank == 'Shorty'){
+    }else if(selecioneArma == 'Shorty'){
 
         div_calcular.innerHTML = 
         `
@@ -268,10 +273,10 @@ function calcular(){
         armas.pistolas.shorty.danoPerna * Perna}<br><br>
         Cabeça: ${armas.pistolas.shorty.danoCabeça} dano<br>
         Peito: ${armas.pistolas.shorty.danoPeito} dano<br>
-        Perna: ${armas.pistolas.shorty.danoPerna} dano<br>
+        Perna: ${armas.pistolas.shorty.danoPerna} dano<br><br>
         `
 
-    }else if(selecioneRank == 'Frenzy'){
+    }else if(selecioneArma == 'Frenzy'){
 
         div_calcular.innerHTML = 
         `
@@ -282,10 +287,10 @@ function calcular(){
         armas.pistolas.frenzy.danoPerna * Perna}<br><br>
         Cabeça: ${armas.pistolas.frenzy.danoCabeça} dano<br>
         Peito: ${armas.pistolas.frenzy.danoPeito} dano<br>
-        Perna: ${armas.pistolas.frenzy.danoPerna} dano<br>
+        Perna: ${armas.pistolas.frenzy.danoPerna} dano<br><br>
         `
 
-    }else if(selecioneRank == 'Ghost'){
+    }else if(selecioneArma == 'Ghost'){
 
         div_calcular.innerHTML = 
         `
@@ -296,10 +301,10 @@ function calcular(){
         armas.pistolas.ghost.danoPerna * Perna}<br><br>
         Cabeça: ${armas.pistolas.ghost.danoCabeça} dano<br>
         Peito: ${armas.pistolas.ghost.danoPeito} dano<br>
-        Perna: ${armas.pistolas.ghost.danoPerna} dano<br>
+        Perna: ${armas.pistolas.ghost.danoPerna} dano<br><br>
         `
 
-    }else if(selecioneRank == 'Sheriff'){
+    }else if(selecioneArma == 'Sheriff'){
 
         div_calcular.innerHTML = 
         `
@@ -310,11 +315,11 @@ function calcular(){
         armas.pistolas.sheriff.danoPerna * Perna}<br><br>
         Cabeça: ${armas.pistolas.sheriff.danoCabeça} dano<br>
         Peito: ${armas.pistolas.sheriff.danoPeito} dano<br>
-        Perna: ${armas.pistolas.sheriff.danoPerna} dano<br>
+        Perna: ${armas.pistolas.sheriff.danoPerna} dano<br><br>
         `
 
 //----------------------SMG-------------------------------------
-    }else if(selecioneRank == 'Stinger'){
+    }else if(selecioneArma == 'Stinger'){
 
         div_calcular.innerHTML = 
         `
@@ -325,9 +330,9 @@ function calcular(){
         armas.smg.stinger.danoPerna * Perna}<br><br>
         Cabeça: ${armas.smg.stinger.danoCabeça} dano<br>
         Peito: ${armas.smg.stinger.danoPeito} dano<br>
-        Perna: ${armas.smg.stinger.danoPerna} dano<br>
+        Perna: ${armas.smg.stinger.danoPerna} dano<br><br>
         `
-    }else if(selecioneRank == 'Spectre'){
+    }else if(selecioneArma == 'Spectre'){
 
         div_calcular.innerHTML = 
         `
@@ -338,11 +343,11 @@ function calcular(){
         armas.smg.spectre.danoPerna * Perna}<br><br>
         Cabeça: ${armas.smg.spectre.danoCabeça} dano<br>
         Peito: ${armas.smg.spectre.danoPeito} dano<br>
-        Perna: ${armas.smg.spectre.danoPerna} dano<br>
+        Perna: ${armas.smg.spectre.danoPerna} dano<br><br>
         `
 
 //----------------------HEAVY-------------------------------------
-    }else if(selecioneRank == 'Ares'){
+    }else if(selecioneArma == 'Ares'){
 
         div_calcular.innerHTML = 
         `
@@ -353,9 +358,9 @@ function calcular(){
         armas.heavy.ares.danoPerna * Perna}<br><br>
         Cabeça: ${armas.heavy.ares.danoCabeça} dano<br>
         Peito: ${armas.heavy.ares.danoPeito} dano<br>
-        Perna: ${armas.heavy.ares.danoPerna} dano<br>
+        Perna: ${armas.heavy.ares.danoPerna} dano<br><br>
         `
-    }else if(selecioneRank == 'Odin'){
+    }else if(selecioneArma == 'Odin'){
 
         div_calcular.innerHTML = 
         `
@@ -366,11 +371,11 @@ function calcular(){
         armas.heavy.odin.danoPerna * Perna}<br><br>
         Cabeça: ${armas.heavy.odin.danoCabeça} dano<br>
         Peito: ${armas.heavy.odin.danoPeito} dano<br>
-        Perna: ${armas.heavy.odin.danoPerna} dano<br>
+        Perna: ${armas.heavy.odin.danoPerna} dano<br><br>
         `
 
 //----------------------SHOTGUN-------------------------------------
-    }else if(selecioneRank == 'Bucky'){
+    }else if(selecioneArma == 'Bucky'){
 
         div_calcular.innerHTML = 
         `
@@ -381,9 +386,9 @@ function calcular(){
         armas.shotguns.bucky.danoPerna * Perna}<br><br>
         Cabeça: ${armas.shotguns.bucky.danoCabeça} dano<br>
         Peito: ${armas.shotguns.bucky.danoPeito} dano<br>
-        Perna: ${armas.shotguns.bucky.danoPerna} dano<br>
+        Perna: ${armas.shotguns.bucky.danoPerna} dano<br><br>
         `
-    }else if(selecioneRank == 'Judge'){
+    }else if(selecioneArma == 'Judge'){
 
         div_calcular.innerHTML = 
         `
@@ -394,12 +399,12 @@ function calcular(){
         armas.shotguns.judge.danoPerna * Perna}<br><br>
         Cabeça: ${armas.shotguns.judge.danoCabeça} dano<br>
         Peito: ${armas.shotguns.judge.danoPeito} dano<br>
-        Perna: ${armas.shotguns.judge.danoPerna} dano<br>
+        Perna: ${armas.shotguns.judge.danoPerna} dano<br><br>
         `
 
 //----------------------SNIPERS-------------------------------------
 
-    }else if(selecioneRank == 'Marshal'){
+    }else if(selecioneArma == 'Marshal'){
 
         div_calcular.innerHTML = 
         `
@@ -410,9 +415,9 @@ function calcular(){
         armas.snipers.marshal.danoPerna * Perna}<br><br>
         Cabeça: ${armas.snipers.marshal.danoCabeça} dano<br>
         Peito: ${armas.snipers.marshal.danoPeito} dano<br>
-        Perna: ${armas.snipers.marshal.danoPerna} dano<br>
+        Perna: ${armas.snipers.marshal.danoPerna} dano<br><br>
         `
-    }else if(selecioneRank == 'Operator'){
+    }else if(selecioneArma == 'Operator'){
 
         div_calcular.innerHTML = 
         `
@@ -423,12 +428,32 @@ function calcular(){
         armas.snipers.operator.danoPerna * Perna}<br><br>
         Cabeça: ${armas.snipers.operator.danoCabeça} dano<br>
         Peito: ${armas.snipers.operator.danoPeito} dano<br>
-        Perna: ${armas.snipers.operator.danoPerna} dano<br>
+        Perna: ${armas.snipers.operator.danoPerna} dano<br><br>
         `
     }else{
         swal("Ops!", "Selecione uma arma!", "error");
         return
     }
+
     
+
+}
+
+
+function lastGun(){
+    
+    // for(i = 0; lista_ultimaArma.length > 0; i++){
+
+    // }
+    for(i = 0; i < lista_ultimaArma.length; i++){
+        div_ultimaArma.innerHTML = 
+        `
+        <p class="Última Arma">Histórico de Armas:</p>
+        <b>Pesquisou um total de ${i+1} armas</b><br>
+        <b>Sua última arma foi ${lista_ultimaArma[lista_ultimaArma.length -1]}</b>
+        `
+
+    }
+
 }
 </script>
