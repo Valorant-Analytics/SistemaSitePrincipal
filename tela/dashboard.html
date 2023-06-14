@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,11 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
+
 <body onload="idNomeUsuario()">
     <section class="dashboard-background">
-        
-        <a class="valorantLogo" href="../tela/Site.html"><img src="../imagem/valorant-logo.png" alt=""></a>
 
+        <img class="valorantLogo" src="../imagem/valorant-logo.png" alt="">
+        
         <span>Olá,</span>
         <u id="nomeUsuario" class="usuario"></u>
 
@@ -28,17 +30,17 @@
 
             <div class="dashArmas">
                 <p class="textArmas">ARMAS</p>
-                
+
                 <img class="imgVandal" src="../imagem/armas/vandal.png" alt="">
                 <img class="imgPhantom" src="../imagem/armas/phantom.png" alt="">
                 <img class="imgOperator" src="../imagem/armas/operator.png" alt="">
-                
+
                 <a class="calcularDano" href="../tela/ArmasCalculadora.html">CALCULAR DANO</a>
             </div>
-<!----------------------------Status------------------------------------------->                        
+            <!----------------------------Status------------------------------------------->
             <div class="overview-status">
                 <p class="textAnalise">ANÁLISE COMPETITIVA ╽ PREENCHA OS CAMPOS</p>
-                
+
                 <div class="primeiroQuadrado">
                     <p>Abates </p>
                     <input id="ipt_abates" class="numeroKill" type="number">
@@ -56,231 +58,291 @@
                 <div class="cincoQuadrado">
                     <p>Partidas Totais</p>
                     <input id="ipt_partidas" class="partidas" type="number">
-                    
+
                 </div>
-                
+
                 <button onclick="calcular()">CALCULAR</button>
             </div>
-            
-            <!----------------------------Gráfico------------------------------------------->            
+
+            <!----------------------------Gráfico------------------------------------------->
             <div class="graficos">
                 <p class="calcularKd">ANALISAR | KD</p>
                 <div class="kd" id="div_kd"></div>
-                <canvas class="grafico1" id="myChart"></canvas>
+                <canvas class="grafico1" id="graficoKD"></canvas>
             </div>
-            
+
             <div class="ultimasPartidas">
                 <p class="calcularWinRate">ANALISAR | WINRATE</p>
                 <div class="winrate" id="div_winrate"></div>
-                <canvas class="grafico2" id="myChart2"></canvas>
+                <canvas class="grafico2" id="graficoWINRATE"></canvas>
             </div>
-            
+
             <div class="twitter">
                 <p class="divulgue">Compartilhe seus Dados <br> com seus amigos!</p>
-            <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
-        </div>
+                <a class="twitter-share-button" href="https://twitter.com/intent/tweet">Tweet</a>
+            </div>
         </div>
     </section>
 </body>
+
 </html>
 <script>
-    
+
+    var tipoInstrucao = false
+    var dadosKD = []
+    var dadosWinrate = []
+
     var usuario = sessionStorage.NOME_USUARIO
 
-function idNomeUsuario(){
-    nomeUsuario.innerHTML = `${usuario}`
-}
+    /////////////////////////    Gráfico KD   //////////////////////////////////////////
+    var data = {
+        labels: [
+            'Abates',
+            'Mortes'
+        ],
+
+        datasets: [{
+            label: 'Total',
+            data: dadosKD,
+
+            backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(242, 46, 46)'
+            ],
+            borderColor: ['none'],
+            hoverBorderColor: ['#182432',],
+            hoverOffset: 2
+        }]
+    };
+
+    var config = {
+        type: 'doughnut',
+        data: data,
+        options: {}
+    };
+
+    var graficoKD = new Chart(
+        document.getElementById('graficoKD'),
+        config
+    );
 
 
-function calcular(){
+    function idNomeUsuario() {
+        nomeUsuario.innerHTML = `${usuario}`
+    }
 
-    var abates = ipt_abates.value;
-    var mortes = Number(ipt_mortes.value);
-    var KD = abates/mortes;
 
-    var vitorias = Number(ipt_vitorias.value);
-    var partidas = Number(ipt_partidas.value)
-    var derrotas =  partidas - vitorias
-    var winrate = vitorias/partidas
-    
-    if(vitorias == "" || partidas == "" || vitorias > partidas || abates == "" || mortes == ""){
-        alert("cuidado2")
-        return false
-        //aguardar();
 
-        //Recupere o valor da nova input pelo nome do id
-        // Agora vá para o método fetch logo abaixo
+    function calcular() {
 
-        // Enviando o valor da nova input
-    }else{
+        var abates = ipt_abates.value;
+        var mortes = Number(ipt_mortes.value);
+        var kd = abates / mortes;
 
-        fetch("/usuarios/calcular", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                abatesServer: abates,
-                mortesServer: mortes,
-                vitoriasServer: vitorias,
-                partidasServer: partidas
-            })
-        })
+        var vitorias = Number(ipt_vitorias.value);
+        var partidas = Number(ipt_partidas.value);
 
-        if(KD < 1){
-          
-          div_kd.innerHTML = 
-          `
+        var derrotas = partidas - vitorias
+        var winrate = vitorias / partidas
+
+        if (vitorias == "" || partidas == "" || vitorias > partidas || abates == "" || mortes == "") {
+            alert("Preencha todos os valores!")
+            return false
+            //aguardar();
+
+            //Recupere o valor da nova input pelo nome do id
+            // Agora vá para o método fetch logo abaixo
+
+            // Enviando o valor da nova input
+        } else {
+
+            fetch("/usuarios/update", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    // crie um atributo que recebe o valor recuperado aqui
+                    // Agora vá para o arquivo routes/usuario.js
+                    fkUsuarioServer: sessionStorage.ID_USUARIO
+                })
+
+            }).then(function (resposta) {
+                console.log("ESTOU NO THEN DO PEGAR_DADOS");
+                if (resposta.ok) {
+                    console.log(`${resposta}essa é a reposta`);
+                    resposta.json().then((json) => {
+
+
+                        if (json.length > 0) {
+                            tipoInstrucao = false
+                        } else {
+                            tipoInstrucao = true
+                        }
+
+                        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaahhhhhhhhhhhhhhh")
+                        console.log(tipoInstrucao);
+
+                        fetch("/usuarios/calcular", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify({
+                                // crie um atributo que recebe o valor recuperado aqui
+                                // Agora vá para o arquivo routes/usuario.js
+                                abatesServer: abates,
+                                mortesServer: mortes,
+                                vitoriasServer: vitorias,
+                                partidasServer: partidas,
+                                kdServer: kd,
+                                winrateServer: winrate,
+                                fkUsuarioServer: sessionStorage.ID_USUARIO,
+                                tipoInstrucaoServer: tipoInstrucao
+                            })
+
+                        })
+
+                            .then(function () {
+                                pegar_dados()
+                            })
+
+
+         /////////////////////////    Gráfico WINRATE   //////////////////////////////////////////
+         var data = {
+        labels: [
+            'Vitorias',
+            'Derrotas'
+        ],
+
+        datasets: [{
+            label: 'Total',
+            data: [vitorias, derrotas],
+            backgroundColor: [
+                'rgb(54, 162, 235)',
+                'rgb(242, 46, 46)'
+            ],
+            borderColor: ['none'],
+            hoverBorderColor: ['#182432',],
+            hoverOffset: 2
+        }]
+    };
+
+    var config = {
+        type: 'doughnut',
+        data: data,
+        options: {}
+    };
+
+    var graficoWINRATE = new Chart(
+        document.getElementById('graficoWINRATE'),
+        config
+    );
+
+        if (kd < 1) {
+
+            div_kd.innerHTML =
+                                `
           Você possuí um KD <br>
           Negativo
           <br><br>
-          KD: ${KD.toFixed(2)}
+          KD: ${kd.toFixed(2)}
           <br><br>
           Abates: ${abates}
           <br>
           Mortes: ${mortes}
    
           `
-      }else{
-          div_kd.innerHTML = 
-          `
+        } else {
+            div_kd.innerHTML =
+                                `
           Você possuí um KD <br>
           Positivo
           <br><br>
-          KD: ${KD.toFixed(2)}
+          KD: ${kd.toFixed(2)}
           <br><br>
           Abates: ${abates}
           <br>
           Mortes: ${mortes}
           `
-      }
-      
-        if((winrate * 100).toFixed(2) < 50){
-                
-                div_winrate.innerHTML = 
-                `
+                        }
+
+                        
+                    });
+                }
+            })
+
+            ////////////////////////////////////////////////////////
+
+
+        }
+
+        if ((winrate * 100).toFixed(2) < 50) {
+
+                div_winrate.innerHTML =
+                                `
 
                  Você possuí um WinRate <br>
                  Negativo
                  <br><br>
-                 WinRate: ${(winrate*100).toFixed(2)}%
+                 WinRate: ${(winrate * 100).toFixed(2)}%
                  <br><br>
                  Vitorias: ${vitorias}
                  <br>
                  Derrotas: ${derrotas}
                 
                 `
-            }else{
-                div_winrate.innerHTML = 
-                `
+        } else {
+
+                div_winrate.innerHTML =
+                                `
                 Você possuí um WinRate<br>
                  Positivo
                  <br><br>
-                 WinRate: ${(winrate*100).toFixed(2)}
+                 WinRate: ${(winrate * 100).toFixed(2)}%
                  <br><br>
                  Vitorias: ${vitorias}
                  <br>
                  Derrotas: ${derrotas}
                 
                 `
+                        }
+
+    }
+
+
+    function pegar_dados() {
+
+        fetch("/usuarios/pegar_dados", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                fkUsuarioServer: sessionStorage.ID_USUARIO,
+            }),
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO PEGAR_DADOS");
+
+            if (resposta.ok) {
+                console.log(`${resposta}essa é a reposta`);
+                resposta.json().then((json) => {
+
+                    // Adicionando o novo valor ao array data
+                    dadosKD[0] = json[0].abates
+                    dadosKD[1] = json[0].mortes
+
+                    console.log('resposta ta OK')
+
+                    // // Atualizando o gráfico 
+                    graficoKD.update()
+
+                });
             }
+        });
 
+    }
 
-
-/////////////////////////    Gráfico WINRATE   //////////////////////////////////////////
-
-
-            
-        var data = {
-            labels: [
-                'Vitorias',
-                'Derrotas'
-            ],
-            
-            datasets: [{
-                label: 'Total',
-                data: [vitorias, derrotas],
-                backgroundColor: [
-                    'rgb(54, 162, 235)',
-                    'rgb(242, 46, 46)'
-                ],
-                borderColor: ['none'],
-                hoverBorderColor:['#182432',],
-                hoverOffset: 2
-            }]
-        };
-        
-        var config = {
-            type: 'doughnut',
-            data: data,
-            options: {}
-        };
-        
-        var myChart2 = new Chart(
-            document.getElementById('myChart2'),
-            config
-        );
-            
-
-
-
-/////////////////////////    Gráfico KD   //////////////////////////////////////////
-
-        var data = {
-             labels: [
-                 'Abates',
-                 'Mortes'
-             ],
-      
-             datasets: [{
-                 label: 'Total',
-                 data: [abates, mortes],
-          
-                 backgroundColor: [
-                     'rgb(54, 162, 235)',
-                     'rgb(242, 46, 46)'
-                 ],
-                 borderColor: ['none'],
-                 hoverBorderColor:['#182432',],
-                 hoverOffset: 2
-             }]
-         };
-  
-         var config = {
-             type: 'doughnut',
-             data: data,
-             options: {}
-         };
-  
-         var myChart = new Chart(
-             document.getElementById('myChart'),
-             config
-             );
-
-             
-
-        }
-
-
-}
+    window.onload = pegar_dados()
 
 </script>
-<!--
-    <div class="escolhaRank">
-                <p>Seu rank:</p><input list="ranks">
-                <datalist id="ranks">
-                    <option value="Ferro">
-                    <option value="Bronze">
-                    <option value="Prata">
-                    <option value="Ouro">
-                    <option value="Platina">
-                    <option value="Diamante">
-                    <option value="Ascendente">
-                    <option value="Imortal">
-                    <option value="Radiante">
-                </datalist>
-                </div>
-            </div>
--->
